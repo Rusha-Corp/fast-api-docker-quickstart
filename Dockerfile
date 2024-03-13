@@ -1,8 +1,5 @@
 FROM python:3.11-alpine
 
-COPY  poetry.lock .
-COPY  pyproject.toml .
-
 RUN apk update && \
     apk add --no-cache \
     ca-certificates \
@@ -19,6 +16,10 @@ RUN apk update && \
 RUN pip install --upgrade pip poetry && \
     poetry config virtualenvs.in-project false && \
     pip install gunicorn
+
+
+COPY  poetry.lock .
+COPY  pyproject.toml .
 
 RUN poetry config virtualenvs.create false && \
     poetry install --no-root
