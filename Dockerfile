@@ -26,6 +26,6 @@ RUN poetry config virtualenvs.create false && \
    
 
 WORKDIR /app
-COPY . .
+COPY ./app.py /app/app.py
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
