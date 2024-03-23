@@ -21,11 +21,10 @@ RUN pip install --upgrade pip poetry && \
 COPY  poetry.lock .
 COPY  pyproject.toml .
 
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-root
+RUN poetry install --no-root
    
 
 WORKDIR /app
-COPY ./app.py /app/app.py
+COPY . .
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
