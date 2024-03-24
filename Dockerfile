@@ -1,30 +1,10 @@
-FROM python:3.11-alpine
-
-RUN apk update && \
-    apk add --no-cache \
-    ca-certificates \
-    gcc \
-    libffi-dev \
-    build-base \
-    curl \
-    gnupg \
-    lsb-release \
-    libpq \
-    libpq-dev \
-    python3-dev
+FROM --platform=amd64 python:3.11
 
 RUN pip install --upgrade pip poetry && \
-    poetry config virtualenvs.in-project false && \
-    pip install gunicorn
-
-
-COPY  poetry.lock .
-COPY  pyproject.toml .
-
-RUN poetry install --no-root
-   
+    poetry config virtualenvs.in-project true
 
 WORKDIR /app
 COPY . .
+RUN poetry install --no-root
 
-CMD ["poetry", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
