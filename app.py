@@ -17,14 +17,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.get("/health")
-def hello(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
-    return "Hello World!"
-
-
 @app.get("/")
-async def default(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
+async def default() -> str:
     """Renders a basic HTML page indicating application creation"""
     return """
     <!DOCTYPE html>
