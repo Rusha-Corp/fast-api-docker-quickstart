@@ -1,13 +1,8 @@
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends
-
-
 from typing import Annotated
 from fastapi.security import OAuth2PasswordBearer
-
-
 
 app = FastAPI()
 
@@ -22,6 +17,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/health")
 def hello(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
     return "Hello World!"
+
+
+@app.get("/")
+async def default(token: Annotated[str, Depends(oauth2_scheme)]) -> str:
+    """Renders a basic HTML page indicating application creation"""
+    return """
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Your Application is Ready!</title>
+        </head>
+        <body>
+            <h1>Congratulations! Your application has been created.</h1>
+            <p>This is the default page. To get started, push your code to a version control system like Git.</p>
+            <p> (You can find many tutorials online on how to use Git. Here's a dummy link for reference: https://git-scm.com/docs/gittutorial)</p>
+        </body>
+    </html>
+    """
+
