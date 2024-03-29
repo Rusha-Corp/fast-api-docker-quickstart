@@ -1,12 +1,12 @@
-from fastapi import FastAPI, Depends, TemplateResponse
+from fastapi import FastAPI, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Annotated
+from fastapi.templating import Jinja2Templates
 
-from fastapi.security import OAuth2PasswordBearer
 
 app = FastAPI()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+templates = Jinja2Templates(directory="templates")
 
 
 app.add_middleware(
@@ -19,8 +19,8 @@ app.add_middleware(
 
 
 @app.get("/")
-async def default(token: Annotated[str, Depends(oauth2_scheme)]) -> TemplateResponse:
+async def default(request: Request):
     """Renders a dynamic HTML page with a welcome message"""
     welcome_message = "Welcome to your application!"  # Dynamic content
-    return TemplateResponse("index.html", {"welcome_message": welcome_message})
+    return templates.TemplateResponse("index.html", {"request": request, "welcome_message": welcome_message})
 
