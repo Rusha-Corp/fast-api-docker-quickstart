@@ -1,4 +1,4 @@
-FROM --platform=amd64 python:3.11
+FROM --platform=amd64 python:3.11-alpine
 
 RUN pip install --upgrade pip poetry && \
     poetry config virtualenvs.in-project true
