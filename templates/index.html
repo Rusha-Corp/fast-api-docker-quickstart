@@ -2,8 +2,28 @@
 <html>
 <head>
     <title>Your Application</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color for visibility */
+            font-family: Arial, sans-serif; /* A more readable font */
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            flex-direction: column; /* Stack items vertically */
+            text-align: center; /* Center text */
+        }
+        a {
+            color: #BB86FC; /* A light purple color for links */
+        }
+    </style>
 </head>
 <body>
     <h1>{{ welcome_message }}</h1>
-    </body>
+    <p>Congratulations on creating your application! This is the default page of your application. To update your application, push your code to your git repository.</p>
+    <p>Git repository URL: <a href="https://example.com/your-repo.git" target="_blank">https://example.com/your-repo.git</a></p>
+</body>
 </html>
