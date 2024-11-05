@@ -1,4 +1,4 @@
-FROM --platform=amd64 python:3.11-alpine
+FROM python:3.13-slim
 
 RUN pip install --upgrade pip poetry && \
     poetry config virtualenvs.in-project true
@@ -8,4 +8,4 @@ COPY . .
 RUN poetry install --no-root
 
 CMD ["poetry", "run", "python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
-# 
+#
