@@ -8,9 +8,12 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN pip install --upgrade pip poetry && \
     poetry config virtualenvs.in-project true
 
-WORKDIR /app
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml poetry.lock ./
 RUN poetry install
+
+COPY . /app
+
+WORKDIR /app
 
 CMD ["poetry", "run", "python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 #
