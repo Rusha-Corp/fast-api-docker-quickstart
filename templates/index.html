@@ -4,26 +4,58 @@
     <title>Your Application</title>
     <style>
         body {
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text color for visibility */
-            font-family: Arial, sans-serif; /* A more readable font */
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh; /* Full viewport height */
+            height: 100vh;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            flex-direction: column; /* Stack items vertically */
-            text-align: center; /* Center text */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
         }
         a {
-            color: #BB86FC; /* A light purple color for links */
+            color: #BB86FC;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #BB86FC;
+            color: #121212;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #9b6bdb;
         }
     </style>
 </head>
 <body>
-    <h1>{{ welcome_message }}</h1>
-    <p>Congratulations on creating your application! This is the default page of your application. To update your application, push your code to your git repository.</p>
-    <p>Git repository URL: <a href="https://example.com/your-repo.git" target="_blank">https://example.com/your-repo.git</a></p>
+    <div class="container">
+        <h1>{{ welcome_message }}</h1>
+        <p>Congratulations on creating your application! This is the default page of your application.</p>
+        <p>To update your application, push your code to your git repository.</p>
+        <p>Git repository URL: <a href="https://example.com/your-repo.git" target="_blank">https://example.com/your-repo.git</a></p>
+        <div>
+            <a href="https://example.com/docs" class="button" target="_blank">Documentation</a>
+            <a href="https://example.com/your-repo.git" class="button" target="_blank">Git Repository</a>
+            <a href="https://example.com/site-docs" class="button" target="_blank">Site Docs</a>
+        </div>
+    </div>
 </body>
 </html>

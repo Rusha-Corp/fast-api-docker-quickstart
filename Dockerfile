@@ -13,6 +13,13 @@ RUN poetry install
 
 COPY . /app
 
+
 WORKDIR /app
 
-CMD ["poetry", "run", "uvicorn", "fastapi_template.app:app", "--reload", "--host", "0.0.0.0", "--port", "8000", "--log-level", "debug"]
+COPY pyproject.toml poetry.lock ./
+RUN poetry install
+
+COPY . .
+
+CMD ["poetry", "run", "python", "-m", "uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
+# 
